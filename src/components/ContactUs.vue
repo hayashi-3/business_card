@@ -1,5 +1,5 @@
 <template>
-  <form name="contact" method="POST" netlify>
+  <form name="contact" action="/thankyou" method="POST" netlify>
     <input type="hidden" name="form-name" value="contact" />
     <v-container>
         <h2>お問い合わせフォーム</h2>
@@ -9,6 +9,7 @@
             sm="6"
           >
             <v-text-field
+              v-model="last_name"
               label="お名前（姓）"
               clearable
             ></v-text-field>
@@ -19,6 +20,7 @@
             sm="6"
           >
             <v-text-field
+              v-model="first_name"
               label="お名前（名）"
               clearable
             ></v-text-field>
@@ -29,6 +31,7 @@
             sm="6"
           >
           <v-text-field
+            v-model="email"
             label="email"
             clearable
           ></v-text-field>
@@ -37,15 +40,50 @@
 
       <v-textarea
           outlined
-          name="input-7-4"
+          v-model="inquiry"
           label="お問い合わせ"
           value="仕事のご依頼などはこちらに詳細をお願いいたします。"
           clearable
       ></v-textarea>
-      <p>
-        <button type="submit">送信</button>
-      </p>
+
+      <v-text-field
+        v-model="botfield"
+        label="人間は入力しないでください"
+        v-show="false"
+      />
+
+      <v-btn color="primary" @click="submit">送信</v-btn>
 
     </v-container>
   </form>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      last_name: "",
+      first_name: "",
+      email: "",
+      inquiry: "",
+      botfield: "",
+    }
+  },
+  methods: {
+    async submit() {
+      const params = new FormData()
+      //以下、ダミーフォームの各フォーム要素のnameと合わせる
+      params.append('form-name', 'contact')
+      params.append('last_name', this.last_name)
+      params.append('first_name', this.first_name)
+      params.append('email', this.email)
+      params.append('inquiry', this.inquiry)
+      params.append('bot-field', this.botfield)
+
+      const response = await this.$axios.$post(window.location.origin, params)
+      //実際はresponseを使って画面側にフィードバックさせるが、ここでは仮にconsoleに出力
+      console.log(response)
+    },
+  },
+}
+</script>
