@@ -1,5 +1,5 @@
 <template>
-  <form name="contact" method="POST" data-netlify="true">
+  <form name="contact" method="POST" netlify>
     <v-container>
         <h2>お問い合わせフォーム</h2>
         <v-row>
