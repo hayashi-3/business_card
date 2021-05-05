@@ -1,22 +1,50 @@
 <template>
   <form name="contact" method="POST" data-netlify="true">
-  <p>
-    <label>Your Name: <input type="text" name="name" /></label>   
-  </p>
-  <p>
-    <label>Your Email: <input type="email" name="email" /></label>
-  </p>
-  <p>
-    <label>Your Role: <select name="role[]" multiple>
-      <option value="leader">Leader</option>
-      <option value="follower">Follower</option>
-    </select></label>
-  </p>
-  <p>
-    <label>Message: <textarea name="message"></textarea></label>
-  </p>
-  <p>
-    <button type="submit">Send</button>
-  </p>
-</form>
+    <v-container>
+        <h2>お問い合わせフォーム</h2>
+        <v-row>
+          <v-col
+            cols="12"
+            sm="6"
+          >
+            <v-text-field
+              label="お名前（姓）"
+              clearable
+            ></v-text-field>
+          </v-col>
+
+          <v-col
+            cols="12"
+            sm="6"
+          >
+            <v-text-field
+              label="お名前（名）"
+              clearable
+            ></v-text-field>
+          </v-col>
+
+          <v-col
+            cols="12"
+            sm="6"
+          >
+          <v-text-field
+            label="email"
+            clearable
+          ></v-text-field>
+          </v-col>
+      </v-row>
+
+      <v-textarea
+          outlined
+          name="input-7-4"
+          label="お問い合わせ"
+          value="仕事のご依頼などはこちらに詳細をお願いいたします。"
+          clearable
+      ></v-textarea>
+      <p>
+        <button type="submit">送信</button>
+      </p>
+
+    </v-container>
+  </form>
 </template>
