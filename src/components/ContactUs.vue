@@ -52,7 +52,9 @@
         v-show="false"
       />
 
-      <v-btn color="primary" @click="submit">送信</v-btn>
+      <p>
+        <button type="submit">送信</button>
+      </p>
 
     </v-container>
   </form>
