@@ -1,5 +1,5 @@
 <template>
-  <form name="contact" action="/thankyou" method="POST" netlify>
+  <form name="contact" method="POST" netlify>
     <input type="hidden" name="form-name" value="contact" />
     <v-container>
         <h2>お問い合わせフォーム</h2>
@@ -46,15 +46,7 @@
           clearable
       ></v-textarea>
 
-      <v-text-field
-        v-model="botfield"
-        label="人間は入力しないでください"
-        v-show="false"
-      />
-
-      <p>
-        <button type="submit">送信</button>
-      </p>
+      <v-btn type="submit" color="primary" @click="submit">送信</v-btn>
 
     </v-container>
   </form>
@@ -68,7 +60,6 @@ export default {
       first_name: "",
       email: "",
       inquiry: "",
-      botfield: "",
     }
   },
   methods: {
@@ -80,7 +71,6 @@ export default {
       params.append('first_name', this.first_name)
       params.append('email', this.email)
       params.append('inquiry', this.inquiry)
-      params.append('bot-field', this.botfield)
 
       const response = await this.$axios.$post(window.location.origin, params)
       //実際はresponseを使って画面側にフィードバックさせるが、ここでは仮にconsoleに出力
