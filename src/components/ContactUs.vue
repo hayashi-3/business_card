@@ -1,5 +1,5 @@
 <template>
-  <form name="contact" method="POST" netlify>
+  <v-form name="contact" method="POST" netlify>
     <input type="hidden" name="form-name" value="contact" />
     <v-container>
         <h2>お問い合わせフォーム</h2>
@@ -49,7 +49,7 @@
       <v-btn type="submit" color="primary" @click="submit">送信</v-btn>
 
     </v-container>
-  </form>
+  </v-form>
 </template>
 
 <script>
