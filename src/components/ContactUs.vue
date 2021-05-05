@@ -1,53 +1,80 @@
 <template>
-  <div>
-  <form v-if="isSubmit === false" @submit.prevent="onSubmit">
-    <input type="text" v-model="name" name="name" >
-    <input type="email" v-model="email" name="email">
-    <textarea v-model="content" name="content"></textarea>
+  <v-form name="contact" method="POST" netlify>
+    <input type="hidden" name="form-name" value="contact" />
+    <v-container>
+        <h2>お問い合わせフォーム</h2>
+        <v-row>
+          <v-col
+            cols="12"
+            sm="6"
+          >
+            <v-text-field
+              v-model="last_name"
+              label="お名前（姓）"
+              clearable
+            ></v-text-field>
+          </v-col>
 
-    <button type="submit">送信</button>
-  </form>
+          <v-col
+            cols="12"
+            sm="6"
+          >
+            <v-text-field
+              v-model="first_name"
+              label="お名前（名）"
+              clearable
+            ></v-text-field>
+          </v-col>
 
-  <div v-if="isSubmit === true">
-    <p>サンクス</p>
-  </div>
+          <v-col
+            cols="12"
+            sm="6"
+          >
+          <v-text-field
+            v-model="email"
+            label="email"
+            clearable
+          ></v-text-field>
+          </v-col>
+      </v-row>
 
-  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-    <input type="text" name="name" />
-    <input type="email" name="email" />
-    <textarea name="content"></textarea>
-  </form>
-</div>
+      <v-textarea
+          outlined
+          v-model="inquiry"
+          label="お問い合わせ"
+          clearable
+      ></v-textarea>
+
+      <v-btn type="submit" color="primary" @click="submit">送信</v-btn>
+
+    </v-container>
+  </v-form>
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   data() {
     return {
-      name: '',
-      email: '',
-      content: '',
-      isSubmit: false
+      last_name: "",
+      first_name: "",
+      email: "",
+      inquiry: "",
     }
   },
   methods: {
-    onSubmit() {
-      const params = new URLSearchParams()
-
-      params.append('form-name', 'contact') // Forms使うのに必要
-
-      params.append('name', this.name)
+    async submit() {
+      const params = new FormData()
+      //以下、ダミーフォームの各フォーム要素のnameと合わせる
+      params.append('form-name', 'contact')
+      params.append('last_name', this.last_name)
+      params.append('first_name', this.first_name)
       params.append('email', this.email)
-      params.append('content', this.content)
+      params.append('inquiry', this.inquiry)
 
-      axios
-        .post('/', params)
-        .then(() => {
-          this.isSubmit = true
-        })
-    }
-  }
+      const response = await this.$axios.$post(window.location.origin, params)
+      //実際はresponseを使って画面側にフィードバックさせるが、ここでは仮にconsoleに出力
+      console.log(response)
+    },
+  },
 }
 </script>
