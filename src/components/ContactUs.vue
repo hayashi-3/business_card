@@ -1,5 +1,6 @@
 <template>
   <form name="contact" method="POST" netlify>
+    <input type="hidden" name="form-name" value="contact" />
     <v-container>
         <h2>お問い合わせフォーム</h2>
         <v-row>
