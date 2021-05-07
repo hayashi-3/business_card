@@ -15,7 +15,6 @@
           <v-text-field
             v-model="name"
             label="お名前"
-            name="name"
             clearable
           ></v-text-field>
         </v-col>
@@ -27,7 +26,6 @@
         <v-text-field
           v-model="email"
           label="email"
-          name="email"
           clearable
         ></v-text-field>
         </v-col>
@@ -36,7 +34,6 @@
           outlined
           v-model="message"
           label="お問い合わせ"
-          name="message"
           clearable
       ></v-textarea>
 
