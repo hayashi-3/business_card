@@ -1,85 +1,81 @@
 <template>
-  <v-form name="contact" method="POST" netlify>
-    <v-text-field
-    v-show="false"
-    v-model="title"
-    name="form-name"
-    />
-    <input type="hidden" name="form-name" value="contact" />
-    <v-container>
-      <h2>お問い合わせフォーム</h2>
+   <v-container tag="section">
+    <v-row>
+      <v-col
+        v-text="title.toUpperCase()"
+        cols="12"
+        tag="h1"
+      />
+    </v-row>
+    <v-form method="post" netlify>
+      <v-text-field
+        v-show="false"
+        v-model="title"
+        name="form-name"
+      />
       <v-row>
-        <v-col
-          cols="12"
-          sm="6"
-        >
+        <v-col cols="12">
           <v-text-field
-            v-model="last_name"
-            label="お名前（姓）"
-            clearable
-          ></v-text-field>
-        </v-col>
-
-        <v-col
-          cols="12"
-          sm="6"
-        >
-          <v-text-field
-            v-model="first_name"
-            label="お名前（名）"
-            clearable
-          ></v-text-field>
-        </v-col>
-
-        <v-col
-          cols="12"
-          sm="6"
-        >
-        <v-text-field
-          v-model="email"
-          label="email"
-          clearable
-        ></v-text-field>
+            v-model="name"
+            label="name"
+            name="name"
+            autofocus
+          />
         </v-col>
       </v-row>
-
-      <v-textarea
-          outlined
-          v-model="inquiry"
-          label="お問い合わせ"
-          clearable
-      ></v-textarea>
-
-      <v-btn type="submit" color="primary" @click="submit">送信</v-btn>
-
-    </v-container>
-  </v-form>
+      <v-row>
+        <v-col cols="12">
+          <v-text-field
+            v-model="email"
+            label="E-mail"
+            name="email"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
+          <v-textarea
+            v-model="message"
+            label="message"
+            name="message"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-btn
+            :disabled="isEmpty"
+            type="submit"
+          >
+            submit
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-form>
+  </v-container>
 </template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      last_name: "",
-      first_name: "",
-      email: "",
-      inquiry: "",
+      title: 'contact',
+      name: '',
+      email: '',
+      message: '' 
     }
   },
-  methods: {
-    async submit() {
-      const params = new FormData()
-      //以下、ダミーフォームの各フォーム要素のnameと合わせる
-      params.append('form-name', 'contact')
-      params.append('last_name', this.last_name)
-      params.append('first_name', this.first_name)
-      params.append('email', this.email)
-      params.append('inquiry', this.inquiry)
-
-      const response = await this.$axios.$post(window.location.origin, params)
-      //実際はresponseを使って画面側にフィードバックさせるが、ここでは仮にconsoleに出力
-      console.log(response)
-    },
-  },
+  computed: {
+    isEmpty () {
+      if (
+        this.name !== '' &&
+        this.email !== '' &&
+        this.message !=='' 
+      ) {
+        return false
+      }
+      return true
+    }
+  }
 }
 </script>
