@@ -1,5 +1,10 @@
 <template>
   <v-form name="contact" method="POST" netlify>
+    <v-text-field
+    v-show="false"
+    v-model="title"
+    name="form-name"
+    />
     <input type="hidden" name="form-name" value="contact" />
     <v-container>
       <h2>お問い合わせフォーム</h2>
