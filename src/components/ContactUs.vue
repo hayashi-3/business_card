@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -61,7 +63,7 @@ export default {
       params.append('email', this.email)
       params.append('message', this.message)
 
-      const response = await this.$axios.$post(window.location.origin, params)
+      const response = await axios.$post(window.location.origin, params)
       //実際はresponseを使って画面側にフィードバックさせるが、ここでは仮にconsoleに出力
       console.log(response)
     },
