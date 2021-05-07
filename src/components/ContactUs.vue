@@ -1,41 +1,41 @@
 <template>
   <v-form name="contact" method="POST" netlify>
-   
+    <input type="hidden" name="form-name" value="contact" />
     <v-container>
-        <h2>お問い合わせフォーム</h2>
-        <v-row>
-          <v-col
-            cols="12"
-            sm="6"
-          >
-            <v-text-field
-              v-model="last_name"
-              label="お名前（姓）"
-              clearable
-            ></v-text-field>
-          </v-col>
-
-          <v-col
-            cols="12"
-            sm="6"
-          >
-            <v-text-field
-              v-model="first_name"
-              label="お名前（名）"
-              clearable
-            ></v-text-field>
-          </v-col>
-
-          <v-col
-            cols="12"
-            sm="6"
-          >
+      <h2>お問い合わせフォーム</h2>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+        >
           <v-text-field
-            v-model="email"
-            label="email"
+            v-model="last_name"
+            label="お名前（姓）"
             clearable
           ></v-text-field>
-          </v-col>
+        </v-col>
+
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            v-model="first_name"
+            label="お名前（名）"
+            clearable
+          ></v-text-field>
+        </v-col>
+
+        <v-col
+          cols="12"
+          sm="6"
+        >
+        <v-text-field
+          v-model="email"
+          label="email"
+          clearable
+        ></v-text-field>
+        </v-col>
       </v-row>
 
       <v-textarea

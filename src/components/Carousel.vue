@@ -14,16 +14,16 @@
       return {
         items: [
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+            src: 'koi.png',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+            src: 'sky.png',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+            src: '4426136_m.jpg',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+            src: 'キツネ.jpg',
           },
         ],
       }

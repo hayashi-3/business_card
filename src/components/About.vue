@@ -1,5 +1,5 @@
 <template>
-    <v-main class="grey lighten-3">
+    <v-app>
       <v-container>
         <v-row class="home-about__contents">
 
@@ -14,13 +14,12 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-main>
+    </v-app>
 </template>
 
 <style lang="scss" scoped>
 /* ここから追加 */
 .home-about__contents {
-  margin-top: 20px;
   justify-content: center;
  
   &-img {

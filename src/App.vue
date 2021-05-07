@@ -1,10 +1,10 @@
 <template>
   <v-app>
-    <Header />
-    <v-content>
+    <v-main>
       <router-view />
-    </v-content>
-    <Footer />
+      <Header />
+      <Footer />
+    </v-main>
   </v-app>
 </template>
 
@@ -13,6 +13,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 export default {
+  title: 'じゅんちゃんのサイト',
   components: { Header, Footer }
 };
 </script>
